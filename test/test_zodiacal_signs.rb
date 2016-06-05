@@ -15,6 +15,12 @@ class TestZodiacalSigns < Minitest::Test
       define_method test_name do
         subject = Date.civil 2016, month, day
         assert_equal expected_sign, subject.zodiacal_sign
+
+        assert_same true, subject.public_send("#{expected_sign}?")
+
+        assert_equal 11, ZodiacalSigns::ALL_SIGNS.count { |sign|
+          false.equal? subject.public_send("#{sign}?")
+        }
       end
     end
   end

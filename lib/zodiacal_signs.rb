@@ -17,10 +17,18 @@ module ZodiacalSigns
     [:capricorn, 12, 23],
   ]
 
+  ALL_SIGNS = CALENDAR.map &:first
+
   module Mixin
 
     def zodiacal_sign
       ZodiacalSigns::resolve month, day
+    end
+
+    ZodiacalSigns::ALL_SIGNS.each do |sign|
+      define_method :"#{sign}?" do
+        zodiacal_sign == sign
+      end
     end
 
   end
