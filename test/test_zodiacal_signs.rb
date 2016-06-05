@@ -3,7 +3,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require "minitest/autorun"
 require "zodiacal_signs"
 
-class TestZodiacalSigns < Minitest::Test
+class TestDate < Minitest::Test
 
   class << self
     def test definition
@@ -12,7 +12,7 @@ class TestZodiacalSigns < Minitest::Test
       test_name = "test_#{day}_#{month_name}_resolves_to_#{expected_sign}"
 
       define_method test_name do
-        subject = Date.civil 2016, month, day
+        subject = build_subject day, month
         assert_equal expected_sign, subject.zodiacal_sign
 
         assert_same true, subject.public_send("#{expected_sign}?")
@@ -22,6 +22,10 @@ class TestZodiacalSigns < Minitest::Test
         }
       end
     end
+  end
+
+  def build_subject day, month
+    Date.civil 2016, month, day
   end
 
   test month: 1, day: 1, resolves_to: :capricorn
@@ -51,4 +55,16 @@ class TestZodiacalSigns < Minitest::Test
   test month: 12, day: 23, resolves_to: :capricorn
   test month: 12, day: 31, resolves_to: :capricorn
 
+end
+
+class TestDateTime < TestDate
+  def build_subject day, month
+    DateTime.civil 2016, month, day
+  end
+end
+
+class TestTime < TestDate
+  def build_subject day, month
+    Time.utc 2016, month, day
+  end
 end
