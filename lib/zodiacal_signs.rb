@@ -1,5 +1,4 @@
 require "zodiacal_signs/version"
-require "zodiacal_signs/integrator"
 
 module ZodiacalSigns
 
@@ -18,6 +17,14 @@ module ZodiacalSigns
     [:capricorn, 12, 23],
   ]
 
+  module Mixin
+
+    def zodiacal_sign
+      ZodiacalSigns::resolve month, day
+    end
+
+  end
+
   module_function
 
   # Resolves +month+ and +day+ pair to zodiacal sign, returns a +Symbol+.
@@ -32,3 +39,5 @@ module ZodiacalSigns
   end
 
 end
+
+require "zodiacal_signs/integrator"

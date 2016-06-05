@@ -1,7 +1,1 @@
-class Date
-
-  def zodiacal_sign
-    ZodiacalSigns::resolve month, day
-  end
-
-end
+Date.include ::ZodiacalSigns::Mixin
