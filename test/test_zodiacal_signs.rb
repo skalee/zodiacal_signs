@@ -2,6 +2,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require "minitest/autorun"
 require "zodiacal_signs"
+require "active_support/time_with_zone"
 
 class TestDate < Minitest::Test
 
@@ -66,5 +67,12 @@ end
 class TestTime < TestDate
   def build_subject day, month
     Time.utc 2016, month, day
+  end
+end
+
+class TestTimeWithZone < TestDate
+  def build_subject day, month
+    zone = ActiveSupport::TimeZone["Asia/Tokyo"]
+    zone.local 2016, month, day
   end
 end
