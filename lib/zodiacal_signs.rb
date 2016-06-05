@@ -1,4 +1,5 @@
 require "zodiacal_signs/version"
+require "zodiacal_signs/integrator"
 
 module ZodiacalSigns
 
