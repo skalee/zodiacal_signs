@@ -1,4 +1,4 @@
 require "date"
 
-Date.include ::ZodiacalSigns::Mixin
-Time.include ::ZodiacalSigns::Mixin
+Date.send :include, ::ZodiacalSigns::Mixin
+Time.send :include, ::ZodiacalSigns::Mixin
