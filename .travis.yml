@@ -8,6 +8,8 @@ rvm:
   - rbx-2
   - rbx-3
   - jruby
+  - jruby-9
+  - jruby-19mode
   - ruby-head
   - jruby-head
 before_install: gem install bundler -v 1.11.2
