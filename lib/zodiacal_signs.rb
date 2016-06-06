@@ -17,7 +17,7 @@ module ZodiacalSigns
     [:capricorn, 12, 23],
   ]
 
-  ALL_SIGNS = CALENDAR.map &:first
+  ALL_SIGNS = CALENDAR.map(&:first)
 
   module Mixin
 
